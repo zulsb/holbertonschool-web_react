@@ -1,51 +1,41 @@
-/************************* Teacher interface *****************************/
-interface Teacher {
-  readonly firstName: string;
-  readonly lastName: string;
-  fullTimeEmployee: boolean;
-  yearsOfExperience?: number;
-  location: string;
-  [propName: string]: any;
+/************************* Director interface *****************************/
+interface DirectorInterface {
+  workFromHome(): string;
+  getCoffeeBreak(): string;
+  workDirectorTasks(): string;
 }
 
-/************************* Director interface ****************************/
-interface Directors extends Teacher {
-  numberOfReports: number;
+interface TeacherInterface {
+  workFromHome(): string;
+  getCoffeeBreak(): string;
+  workTeacherTasks(): string;
 }
 
-/************************* Printing teachers *****************************/
-interface printTeacherFunction {
-  (firstName: string, lastName: string): string;
-}
-
-function teachersName(firstName: string, lastName: string): string {
-  return `${firstName[0]}. ${lastName}`;
-}
-
-export const printTeacher: printTeacherFunction = teachersName;
-
-/************************** Student class ********************************/
-export interface sClass {
-  firstName: string;
-  lastName: string;
-  workOnHomework(): string;
-  displayName(): string;
-}
-
-export class StudentClass implements sClass {
-  firstName: string
-  lastName: string
-
-  constructor(firstName: string, lastName: string) {
-    this.firstName = firstName
-    this.lastName = lastName
+export class Director implements DirectorInterface {
+  workFromHome(): string {
+    return 'Working from home';
   }
-
-  workOnHomework(): string {
-    return 'Currently working';
+  getCoffeeBreak(): string {
+    return 'Getting a coffee break';
   }
-
-  displayName(): string {
-    return this.firstName;
+  workDirectorTasks(): string {
+    return 'Getting to director tasks';
   }
+}
+
+export class Teacher implements TeacherInterface {
+  workFromHome(): string {
+    return 'Cannot work from home';
+  }
+  getCoffeeBreak(): string {
+    return 'Cannot have a break';
+  }
+  workTeacherTasks(): string {
+    return 'Getting to work';
+  }
+}
+
+export function createEmployee(salary: number | string): Director | Teacher {
+  if (typeof salary === 'number' && salary < 500) return new Teacher();
+  return new Director();
 }
