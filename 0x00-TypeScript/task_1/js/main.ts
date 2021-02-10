@@ -9,12 +9,11 @@ interface Teacher {
 }
 
 /* ---------------------- Director interface ------------------------- */
-
 interface Directors extends Teacher {
   numberOfReports: number;
 }
 
-/* ---------------------- Printing teachers ------------------------- */
+/* ---------------------- Printing teachers -------------------------- */
 interface printTeacherFunction {
   (firstName: string, lastName: string): string;
 }
