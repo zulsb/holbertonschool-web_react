@@ -6,8 +6,8 @@ $('body').append('<p>Dashboard data for the students</p>');
 $('body').append('<button>Click here to get started</button>');
 $('body').append('<p id="count"></p>');
 let track = 0;
-function updateCounter() {
+const updateCounter = () => {
   track++;
   $('#count').html(`${track} clicks on the button`);
 };
-$('button').on('click', _.debounce(updateCounter, 500));
+$('button').on('click', _.debounce(updateCounter));
