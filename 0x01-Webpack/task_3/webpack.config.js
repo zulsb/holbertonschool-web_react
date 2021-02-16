@@ -1,4 +1,4 @@
-const p = require('path');
+const p = require("path");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
