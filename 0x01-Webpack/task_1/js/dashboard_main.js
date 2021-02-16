@@ -1,4 +1,4 @@
-import $ from "jquery";
+import $ from 'jquery';
 import _ from 'lodash';
 $('body').append('<p>Holberton Dashboard</p>');
 $('body').append('<p>Dashboard data for the students</p>');
@@ -8,6 +8,6 @@ $('body').append('<p>Copyright - Holberton School</p>');
 let track = 0;
 function updateCounter() {
   track++;
-  $("#count").html(`${track} clicks on the button`);
+  $('#count').html(`${track} clicks on the button`);
 };
 $('button').on('click', _.debounce(updateCounter));
