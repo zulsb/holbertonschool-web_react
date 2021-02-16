@@ -1,6 +1,6 @@
 const p = require('path');
-const htmlPlugin = require('html-webpack-plugin');
-const { clean } = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   mode: 'development',
@@ -22,8 +22,8 @@ module.exports = {
     port: 8564,
   },
   plugins: [
-    new clean(),
-    new htmlPlugin(),
+    new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin(),
   ],
   module: {
     rules: [
