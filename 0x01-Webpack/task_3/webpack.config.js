@@ -1,14 +1,30 @@
-const p = require("path");
+const p = require('path');
+const htmlPlugin = require('html-webpack-plugin');
+const { clean } = require('clean-webpack-plugin');
+
 module.exports = {
-  mode: 'production',
-  entry: './js/dashboard_main.js',
+  mode: 'development',
+  entry: {
+    all: ["./modules/header/header.js", "./modules/body/body.js", "./modules/footer/footer.js"],
+  },
   performance: {
     maxAssetSize: 1000000,
+    maxEntrypointSize: 1000000,
   },
   output: {
-    filename: "bundle.js",
-    path: p.resolve(__dirname, "public")
+    filename: '[name].bundle.js',
+    path: p.resolve(__dirname, 'public')
   },
+  devtool: 'inline-source-map',
+  devServer: {
+    contentBase: p.join(__dirname, './public'),
+    compress: true,
+    port: 8564,
+  },
+  plugins: [
+    new clean(),
+    new htmlPlugin(),
+  ],
   module: {
     rules: [
       {
@@ -23,11 +39,11 @@ module.exports = {
             loader: "image-webpack-loader",
             options: {
               bypassOnDebug: true,
-              disable: true
+              disable: true,
             },
           },
         ],
       },
     ],
-  }
+  },
 };
