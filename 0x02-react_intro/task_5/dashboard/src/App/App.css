@@ -1,0 +1,38 @@
+body {
+  font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+}
+
+/* Header div
+============================= */
+.App-logo {
+  width: 200px;
+}
+
+.App-header {
+  display: flex;
+  color: #e0354b;
+  border-bottom: 3px solid #e0354b;
+  align-items: center;
+}
+
+/* Body div
+============================= */
+.App-body {
+  padding: 30px 50px;
+}
+
+.App-body input {
+  margin-right: 1rem;
+}
+
+/* Footer div
+============================= */
+.App-footer {
+  display: flex;
+  justify-content: center;
+  font-style: italic;
+  border-top: 3px solid #e0354b;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+}
