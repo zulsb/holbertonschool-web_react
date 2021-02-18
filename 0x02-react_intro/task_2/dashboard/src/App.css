@@ -21,6 +21,10 @@ body {
   padding: 30px 50px;
 }
 
+.App-body input {
+  margin-right: 1rem;
+}
+
 /* Footer div
 ============================= */
 .App-footer {
