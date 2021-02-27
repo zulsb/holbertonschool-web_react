@@ -4,8 +4,8 @@ import { expect } from "chai";
 import App from "../App/App";
 import Login from "./Login";
 
-describe("Login", () => {
-  test("Login without crashing", (done) => {
+describe("Login test", () => {
+  test("Login exist", (done) => {
     expect(shallow(<Login />).exists());
     done();
   });

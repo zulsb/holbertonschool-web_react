@@ -4,8 +4,8 @@ import { expect } from 'chai';
 import App from '../App/App';
 import Footer from './Footer';
 
-describe('Footer', () => {
-  test('Footer without crashing', (done) => {
+describe('Footer test', () => {
+  test('Footer exist', (done) => {
     expect(shallow(<Footer />).exists());
     done();
   });
@@ -15,7 +15,7 @@ describe('Footer', () => {
     done();
   });
 
-  test('renders Copyright text', (done) => {
+  test('Copyright', (done) => {
     expect(shallow(<Footer />).text('Copyright')).contain('Copyright');
     done();
   });

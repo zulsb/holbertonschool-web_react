@@ -4,8 +4,8 @@ import { expect } from 'chai';
 import App from '../App/App';
 import Header from './Header';
 
-describe('Header', () => {
-  test('Header without crashing', (done) => {
+describe('Header test', () => {
+  test('Header exist', (done) => {
     expect(shallow(<Header />).exists());
     done();
   });
