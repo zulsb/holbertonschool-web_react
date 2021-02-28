@@ -11,7 +11,7 @@ describe('Test NotificationItem.js', () => {
   test('List items', () => {
     const compo = shallow(<NotificationItem type='default' value='test' />);    
     expect(compo.find('li')).to.have.lengthOf(1);
-    expect(compo.find('li').props()).to.have.property('noti-style', 'default');
+    expect(compo.find('li').props()).to.have.property('data-notification-type', 'default');
     expect(compo.find('li').text()).to.equal('test');
   });
 

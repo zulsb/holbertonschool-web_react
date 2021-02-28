@@ -15,7 +15,7 @@ describe("Notification test", () => {
 
   test("Right html", () => {
     expect(shallow(<Notifications />).find(NotificationItem).first().html()).to.equal(
-      '<li noti-style="default">New course available</li>'
+      '<li data-notification-type="default">New course available</li>'
     );
   });
 });
