@@ -1,0 +1,16 @@
+body {
+  font-family: "Segoe UI", "Roboto", "Helvetica Neue", sans-serif;
+}
+
+/* Header div
+============================= */
+.App-logo {
+  width: 200px;
+}
+
+.App-header {
+  display: flex;
+  color: #e0354b;
+  border-bottom: 3px solid #e0354b;
+  align-items: center;
+}
