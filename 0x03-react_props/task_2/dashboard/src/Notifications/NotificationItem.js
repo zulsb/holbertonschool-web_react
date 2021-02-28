@@ -1,15 +1,9 @@
-import React from "react";
+import React from 'react';
 
-function NotificationItem(prop) {
-  if (prop.value)
-    return <li noti-style={prop.type}>{prop.value}</li>;
-  else
-    return (
-      <li
-      noti-style={prop.type}
-        dangerouslySetInnerHTML={prop.html}
-      ></li>
-    );
+function NotificationItem(props) {
+  if (!props.value)
+    return (<li noti-style={props.type} dangerouslySetInnerHTML={props.html} />);
+  return (<li noti-style={props.type}>{props.value}</li>);
 }
 
 export default NotificationItem;

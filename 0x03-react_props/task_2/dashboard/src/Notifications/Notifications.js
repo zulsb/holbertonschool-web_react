@@ -16,7 +16,7 @@ export const Noti = () => {
 
   const cicon = {
     width: "10px",
-    height: "10px",
+    height: "10px"
   };
 
   return (
