@@ -1,0 +1,34 @@
+/* Course table
+============================= */
+
+.course {
+  min-height: 26rem;
+  padding: 1rem;
+}
+
+table {
+  width: 100%;
+}
+
+thead tr:first-of-type th {
+  text-align: center;
+}
+
+th {
+  text-align: left;
+}
+
+th {
+  padding: 0.25rem;
+  border: 1px solid lightgray;
+}
+
+thead tr:last-of-type th:last-child,
+tbody tr td:first-of-type {
+  border-right: 0;
+}
+
+thead tr:last-of-type th:last-of-type,
+tbody tr td:last-of-type {
+  border-left: 0;
+}
