@@ -6,6 +6,6 @@
   font-style: italic;
   border-top: 3px solid #e0354b;
   width: 100%;
-  position: fixed;
-  bottom: 0;
+  position: relative;
+  top: 16rem;
 }
