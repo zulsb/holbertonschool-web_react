@@ -29,7 +29,7 @@ function CourseListRow({ isHeader, textFirstCell, textSecondCell }) {
 CourseListRow.propTypes = {
   isHeader: PropTypes.bool,
   textFirstCell: PropTypes.string.isRequired,
-  textSecondCell: PropTypes.string
+  textSecondCell: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
 };
 
 CourseListRow.defaultProps = {
