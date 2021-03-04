@@ -5,7 +5,7 @@ import NotificationItem from "./NotificationItem";
 import { getLatestNotification } from "../utils/utils";
 import PropTypes from 'prop-types';
 
-export const Noti = ({ displayDrawer }) => {
+export const Notifications = ({ displayDrawer }) => {
   const btn = {
     position: "absolute",
     right: "1rem",
@@ -41,12 +41,12 @@ export const Noti = ({ displayDrawer }) => {
   )
 }
 
-Noti.propTypes = {
+Notifications.propTypes = {
   displayDrawer: PropTypes.bool
 };
 
-Noti.defaultProps = {
+Notifications.defaultProps = {
   displayDrawer: false
 };
 
-export default Noti;
+export default Notifications;
