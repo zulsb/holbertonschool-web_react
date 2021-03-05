@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import Notifications from "../Notifications/Notifications";
 import { getLatestNotification } from "../utils/utils";
 import Header from "../Header/Header";
@@ -7,7 +7,7 @@ import Footer from "../Footer/Footer";
 import CourseList from "../CourseList/CourseList";
 import PropTypes from "prop-types";
 
-class App extends React.Component {
+class App extends Component {
   render() {
     const listCourses = [
       { id: 1, name: "ES6", credit: 60 },
