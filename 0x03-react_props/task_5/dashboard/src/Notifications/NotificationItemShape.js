@@ -1,5 +1,4 @@
-import React from 'react';
-import PropTypes from 'prop-types'; // ES6
+import PropTypes from 'prop-types';
 
 const NotificationItemShape = PropTypes.shape({
   id: PropTypes.number.isRequired,
