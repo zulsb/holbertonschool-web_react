@@ -1,22 +1,38 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { expect } from 'chai';
+import { expect as e } from 'chai';
 import App from './App';
 import CourseList from '../CourseList/CourseList';
 import Login from '../Login/Login';
 
 describe('App test', () => {
   test('App exist', () => {
-    expect(shallow(<App />).exists());
+    e(shallow(<App />).exists());
+  });
+
+  let calls = {};
+  beforeEach(() => {
+    calls = {}; 
+    document.addEventListener = jest.fn((event, callback) => {
+      calls[event] = callback;
+    });
   });
 
   test('CourseList hide when isLoggedIn = false', () => {
-    expect(shallow(<App />).find(CourseList)).to.have.lengthOf(0);
+    e(shallow(<App />).find(CourseList)).to.have.lengthOf(0);
   });
 
   test('CourseList show and Login hide when isLoggedIn = true', () => {
     const compo = shallow(<App isLoggedIn={true} />);
-    expect(compo.find(CourseList)).to.have.lengthOf(1);
-    expect(compo.find(Login)).to.have.lengthOf(0);
+    e(compo.find(CourseList)).to.have.lengthOf(1);
+    e(compo.find(Login)).to.have.lengthOf(0);
+  });
+
+  test('ctrl+h call the "logOut" function', () => {
+    const alertMessage = jest.fn(() => void (0));
+    shallow(<App />);
+    window.alert = alertMessage;
+    calls.keydown({ key: 'h', ctrlKey: true });
+    expect(alertMessage).toHaveBeenCalled();
   });
 });

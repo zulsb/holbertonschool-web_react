@@ -8,6 +8,21 @@ import CourseList from '../CourseList/CourseList';
 import PropTypes from 'prop-types';
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.taps = this.taps.bind(this);
+  }
+
+  componentDidMount() {
+    document.addEventListener('keydown', this.taps);
+  }
+
+  taps(event) {
+    if (event.key === 'h' && event.ctrlKey) {
+      alert('Logging you out');
+      this.props.logOut();
+    }
+  }
   render() {
     const listCourses = [
       { id: 1, name: 'ES6', credit: 60 },
@@ -35,11 +50,13 @@ class App extends React.Component {
 }
 
 App.propTypes = {
-  isLoggedIn: PropTypes.bool
+  isLoggedIn: PropTypes.bool,
+  logOut: PropTypes.func
 };
 
 App.defaultProps = {
-  isLoggedIn: false
+  isLoggedIn: false,
+  logOut: (() => {})
 };
 
 export default App;
