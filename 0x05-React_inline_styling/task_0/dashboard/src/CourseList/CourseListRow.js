@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function CourseListRow({ isHeader, textFirstCell, textSecondCell }) {
-  let titles = undefined;
+  let titles = '';
   let bgColor = undefined;
   const bgColorRow = { backgroundColor: '#f5f5f5ab' };
   const bgColorHeader = { backgroundColor: '#deb5b545' };
