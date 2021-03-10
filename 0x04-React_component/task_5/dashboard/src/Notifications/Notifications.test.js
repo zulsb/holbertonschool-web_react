@@ -65,4 +65,32 @@ describe('Notification test', () => {
     expect(console.log).toHaveBeenCalled()
   });
 
+  const NOupdated = [
+    { id: 1, type: 'default', value: 'New course available' },
+    { id: 2, type: 'urgent', value: 'New resume available' },
+  ];
+
+  const updated = [
+    { id: 1, type: 'default', value: 'New course available' },
+    { id: 2, type: 'urgent', value: 'New resume available' },
+    { id: 3, type: 'urgent', html: { __html: getLatestNotification() } },
+    { id: 4, type: 'default', value: 'New updates' },
+  ];
+
+  test('Updating props same list', () => {
+    const compo = shallow(<Notifications displayDrawer={true} listNotifications={listNotifications} />);
+    const shouldComponentUpdate = jest.spyOn(Notifications.prototype, 'shouldComponentUpdate');
+    compo.setProps({ listNotifications: NOupdated });
+    expect(shouldComponentUpdate).toHaveBeenCalled();
+    expect(shouldComponentUpdate).toHaveLastReturnedWith(false);
+  });
+
+  test('Updating propswith a longer list', () => {
+    const compo = shallow(<Notifications displayDrawer={true} listNotifications={listNotifications} />);
+    const shouldComponentUpdate = jest.spyOn(Notifications.prototype, 'shouldComponentUpdate');
+    compo.setProps({ listNotifications: updated });
+    expect(shouldComponentUpdate).toHaveBeenCalled();
+    expect(shouldComponentUpdate).toHaveLastReturnedWith(true);
+  });
+
 });
