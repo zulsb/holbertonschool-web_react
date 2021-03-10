@@ -6,6 +6,11 @@ import NotificationItemShape from './NotificationItemShape';
 import PropTypes from 'prop-types';
 
 class Notifications extends Component {
+  shouldComponentUpdate(nextProps) {
+    return (
+      nextProps.listNotifications.length > this.props.listNotifications.length
+    );
+  }
   render() {
     const btn = {
       position: "absolute",
