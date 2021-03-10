@@ -1,12 +1,16 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
 function CourseListRow({ isHeader, textFirstCell, textSecondCell }) {
-  let titles = "";
+  let titles = undefined;
+  let bgColor = undefined;
+  const bgColorRow = { backgroundColor: '#f5f5f5ab' };
+  const bgColorHeader = { backgroundColor: '#deb5b545' };
 
-  if (isHeader) {
+  if (isHeader === true) {
+    bgColor = bgColorHeader;
     if (textSecondCell === null) {
-      titles = <th colSpan="2">{ textFirstCell }</th>;
+      titles = <th colSpan='2'>{ textFirstCell }</th>;
     } else {
       titles = (
         <React.Fragment>
@@ -16,6 +20,7 @@ function CourseListRow({ isHeader, textFirstCell, textSecondCell }) {
       );
     }
   } else {
+    bgColor = bgColorRow;
     titles = (
       <React.Fragment>
         <td>{ textFirstCell }</td>
@@ -23,7 +28,7 @@ function CourseListRow({ isHeader, textFirstCell, textSecondCell }) {
       </React.Fragment>
     );
   }
-  return <tr>{titles}</tr>;
+  return <tr style={bgColor}>{titles}</tr>;
 }
 
 CourseListRow.propTypes = {
