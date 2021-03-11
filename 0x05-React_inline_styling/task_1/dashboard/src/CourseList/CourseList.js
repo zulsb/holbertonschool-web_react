@@ -40,5 +40,4 @@ const s = StyleSheet.create({
   }
 });
 
-
 export default CourseList;
