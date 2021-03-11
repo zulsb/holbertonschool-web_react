@@ -10,7 +10,7 @@ function CourseList({ listCourses }) {
       <table id='CourseList' className={css(s.table)}>
         <thead>
           <CourseListRow isHeader={true} textFirstCell="Available courses" />
-          <CourseListRow isHeader={true} textFirstCell="Course name" textSecondCell="Credit" className={css(s.tableLine)}/>
+          <CourseListRow isHeader={true} textFirstCell="Course name" textSecondCell="Credit" />
         </thead>
         <tbody>
         { listCourses.length === 0 ? (<CourseListRow textFirstCell="No course available yet" isHeader={false} />) : <></> }
@@ -37,10 +37,6 @@ const s = StyleSheet.create({
   table: {
     border: '1px solid lightgray',
     width: '100%'
-  },
-  tableLine: {
-    border: '1px solid lightgray',
-    textAlign: 'left'
   }
 });
 
