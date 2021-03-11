@@ -4,7 +4,7 @@ import { StyleSheet, css } from 'aphrodite';
 function Login() {
   return (
     <React.Fragment>
-      <div>
+      <div className="App-login">
         <p>Login to access the full dashboard</p>
         <label htmlFor="email">Email: </label>
         <input type="email" id="email" className={css(s.inputSpace)} />
