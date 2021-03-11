@@ -3,8 +3,18 @@ import { mount } from 'enzyme';
 import { expect as e } from 'chai';
 import Login from '../Login/Login';
 import WithLogging from './WithLogging';
+import { StyleSheetTestUtils } from "aphrodite";
+
 
 describe('WithLogging test', () => {
+  beforeAll(() => {
+    StyleSheetTestUtils.suppressStyleInjection();
+  });
+
+  afterAll(() => {
+    StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+  });
+
   test('console.log call / pure html', () => {
     const HOC = WithLogging(() => <a></a>);
     console.log = jest.fn();
