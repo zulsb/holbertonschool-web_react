@@ -1,0 +1,13 @@
+/* Course table
+============================= */
+
+thead tr:first-of-type th {
+  text-align: center;
+  border-bottom: 1px solid lightgray;
+}
+
+th {
+  border-bottom: 1px solid lightgray;
+  text-align: left;
+  padding: 3px;
+}
