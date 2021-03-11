@@ -1,5 +1,5 @@
 import React from 'react';
-import './CourseList.css';
+import { StyleSheet, css } from 'aphrodite';
 import PropTypes from 'prop-types';
 
 function CourseListRow({ isHeader, textFirstCell, textSecondCell }) {
@@ -11,12 +11,16 @@ function CourseListRow({ isHeader, textFirstCell, textSecondCell }) {
   if (isHeader === true) {
     bgColor = bgColorHeader;
     if (textSecondCell === null) {
-      titles = <th colSpan='2'>{ textFirstCell }</th>;
+      titles = (
+        <th className={css(s.thHeader)} colSpan='2'>
+          {textFirstCell}
+        </th>
+      );
     } else {
       titles = (
         <React.Fragment>
-          <th>{ textFirstCell }</th>
-          <th>{ textSecondCell }</th>
+          <th className={css(s.thSubHeader)}>{textFirstCell}</th>
+          <th className={css(s.thSubHeader)}>{textSecondCell}</th>
         </React.Fragment>
       );
     }
@@ -24,8 +28,8 @@ function CourseListRow({ isHeader, textFirstCell, textSecondCell }) {
     bgColor = bgColorRow;
     titles = (
       <React.Fragment>
-        <td>{ textFirstCell }</td>
-        <td>{ textSecondCell }</td>
+        <td>{textFirstCell}</td>
+        <td>{textSecondCell}</td>
       </React.Fragment>
     );
   }
@@ -35,12 +39,25 @@ function CourseListRow({ isHeader, textFirstCell, textSecondCell }) {
 CourseListRow.propTypes = {
   isHeader: PropTypes.bool,
   textFirstCell: PropTypes.string.isRequired,
-  textSecondCell: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+  textSecondCell: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
 
 CourseListRow.defaultProps = {
   isHeader: false,
-  textSecondCell: null
+  textSecondCell: null,
 };
+
+const s = StyleSheet.create({
+  thHeader: {
+    textAlign: 'center',
+    borderBottom: '1px solid lightgray',
+    padding: '3px'
+  },
+  thSubHeader: {
+    borderBottom: '1px solid lightgray',
+    textAlign: 'left',
+    padding: '3px'
+  },
+});
 
 export default CourseListRow;

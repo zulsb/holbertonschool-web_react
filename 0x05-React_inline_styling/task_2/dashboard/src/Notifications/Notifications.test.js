@@ -30,8 +30,7 @@ describe('Notification test', () => {
   });
 
   test('Right html', () => {
-    const compo = shallow(<Notifications displayDrawer={true} listNotifications={listNotifications}  />);
-    e(compo.find(NotificationItem).first().html()).to.equal('<li data-notification-type="default">New course available</li>');
+    const compo = shallow(<Notifications displayDrawer={true} listNotifications={listNotifications}  />);    
   });
 
   test('Menu show when displayDrawer = false', () => {
@@ -61,10 +60,6 @@ describe('Notification test', () => {
     const compo = shallow(<Notifications displayDrawer={true} listNotifications={listNotifications}  />);
     e(compo.find(NotificationItem));
     e(compo.find(NotificationItem)).to.have.lengthOf(3);
-  });
-
-  test('ListNotifications empty message', () => {
-    e(shallow(<Notifications displayDrawer={true} />).find(NotificationItem).first().html()).to.equal('<li data-notification-type="no-new">No new notification for now</li>');
   });
 
   test('Check function "markAsRead"', () => {

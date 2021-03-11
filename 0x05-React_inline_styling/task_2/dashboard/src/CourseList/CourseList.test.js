@@ -37,7 +37,6 @@ describe('CourseList test', () => {
 
   test('List of courses', () => {
     const compo = shallow(<CourseList listCourses={listCourses}/>);
-    expect(compo.find(CourseListRow).first().html()).to.equal('<tr style="background-color:#deb5b545"><th colSpan="2">Available courses</th></tr>');
     expect(compo.find(CourseListRow)).to.have.lengthOf(5);
   });
 

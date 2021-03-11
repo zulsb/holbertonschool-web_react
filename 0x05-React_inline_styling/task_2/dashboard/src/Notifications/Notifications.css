@@ -1,7 +1,0 @@
-ul li[data-notification-type='default'] {
-  color: blue;
-}
-
-ul li[data-notification-type='urgent'] {
-  color: red;
-}
