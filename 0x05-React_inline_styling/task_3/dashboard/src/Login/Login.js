@@ -9,7 +9,7 @@ function Login() {
         <label htmlFor="email">Email: </label>
         <input type="email" id="email" className={css(s.inputSpace, s.loginResponsive)} />
         <label htmlFor="password">Password: </label>
-        <input type="password" id="password" className={css(s.inputSpace, s.loginResponsive)} />
+        <input type="password" id="password" className={css(s.inputSpace, s.loginResponsive2)} />
         <button className={css(s.buttonResponsive)}>OK</button>
       </div>
     </React.Fragment>
@@ -32,6 +32,14 @@ const s = StyleSheet.create({
       border: 'none',
       margin: '0',
       width: '84%'
+    }
+  },
+  loginResponsive2: {
+    '@media screen and (max-width: 900px)': {
+      display: 'inline',
+      border: 'none',
+      margin: '0',
+      width: '50%'
     }
   },
   buttonResponsive: {
