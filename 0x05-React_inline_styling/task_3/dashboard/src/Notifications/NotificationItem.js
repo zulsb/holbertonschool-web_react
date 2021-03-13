@@ -53,13 +53,19 @@ const s = StyleSheet.create({
   default: {
     color: "#0000ff",
     '@media (max-width: 900px)': {
-      borderBottom: '1px solid black'
+      borderBottom: '1px solid black',
+      fontSize: '20px',
+      padding: '10px 8px',
+      width: '93%'
     }
   },
   urgent: {
     color: "#ff0000",
     '@media (max-width: 900px)': {
-      borderBottom: '1px solid black'
+      borderBottom: '1px solid black',
+      fontSize: '20px',
+      padding: '10px 8px',
+      width: '93%'
     }
   }
 });
