@@ -51,11 +51,17 @@ NotificationItem.defaultProps = {
 
 const s = StyleSheet.create({
   default: {
-    color: "#0000ff"
+    color: "#0000ff",
+    '@media (max-width: 900px)': {
+      borderBottom: '1px solid black'
+    }
   },
   urgent: {
-    color: "#ff0000"
-  },
+    color: "#ff0000",
+    '@media (max-width: 900px)': {
+      borderBottom: '1px solid black'
+    }
+  }
 });
 
 export default NotificationItem;

@@ -91,8 +91,6 @@ const s = StyleSheet.create({
   Notifications: {
     border: "1px dashed #e0354b",
     padding: "5px 25px",
-    bottom: '1rem',
-    position: 'relative',
     '@media screen and (max-width: 900px)': {
       border: 'none',
       backgroundColor: '#ffff',
