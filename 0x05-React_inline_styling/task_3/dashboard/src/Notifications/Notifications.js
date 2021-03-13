@@ -26,10 +26,12 @@ class Notifications extends Component {
       height: "10px",
     };
 
+    const showHeaderNoti = css(this.props.displayDrawer ? s.HeaderOff : s.HeaderOn);
+
     return (
-      <div className={css(s.notiDiv, s.notiDivResposive)}>
+      <div className={css(s.notiDiv)}>
         <div className={css(s.menuItem)} id="menuItem">
-          Your notifications
+          <p className={showHeaderNoti}>Your notifications</p>
         </div>
         {this.props.displayDrawer ? (
           <div className={css(s.Notifications)} id="Notifications">
@@ -89,6 +91,14 @@ const s = StyleSheet.create({
   Notifications: {
     border: "1px dashed #e0354b",
     padding: "5px 25px",
+    '@media screen and (max-width: 900px)': {
+      border: 'none',
+      backgroundColor: '#ffff',
+      width: '100%',
+      height: '100%',
+      zIndex: '1'
+    }
+
   },
   menuItem: {
     marginBottom: "10px",
@@ -100,14 +110,16 @@ const s = StyleSheet.create({
     right: "0.7rem",
     flexWrap: "wrap",
     alignItems: "flex-end",
-  },
-  notiDivResposive: {
     '@media screen and (max-width: 900px)': {
-      position: 'fixed',
       width: '100%',
-      height: '100%',
-      zIndex: '6',
-      display: 'block !important',
+      height: '100%'
+    }
+  },
+  HeaderOff: {
+    marginRight: '8px',
+    '@media screen and (max-width: 900px)': {
+      display: 'none',
+      backgroundColor: 'white'
     }
   }
 });
