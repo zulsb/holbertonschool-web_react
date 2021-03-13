@@ -7,7 +7,7 @@ function Login() {
       <div className={css(s.divResponsive)}>
         <p>Login to access the full dashboard</p>
         <label htmlFor="email">Email: </label>
-        <input type="email" id="email" className={css(s.inputSpace, s.loginResponsive)} />
+        <input type="email" id="email" className={css(s.inputSpace)} />
         <label htmlFor="password">Password: </label>
         <input type="password" id="password" className={css(s.inputSpace, s.loginResponsive2)} />
         <button className={css(s.buttonResponsive)}>OK</button>
@@ -18,20 +18,18 @@ function Login() {
 
 const s = StyleSheet.create({
   inputSpace: {
-    marginRight: '1rem'
-  },
-  divResponsive: {
-    '@media screen and (max-width: 900px)': {
-      width: '90%',
-      padding: '0'
-    }
-  },
-  loginResponsive: {
+    marginRight: '1rem',
     '@media screen and (max-width: 900px)': {
       display: 'inline',
       border: 'none',
       margin: '0',
       width: '84%'
+    }
+  },
+  divResponsive: {
+    '@media screen and (max-width: 900px)': {
+      width: '90%',
+      padding: '0'
     }
   },
   loginResponsive2: {
