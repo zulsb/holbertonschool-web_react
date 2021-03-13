@@ -43,7 +43,7 @@ class Notifications extends Component {
               <img src={closeicon} style={cicon} />
             </button>
             <p>Here is the list of notifications</p>
-            <ul>
+            <ul className={css(s.ulResponsive)}>
               {this.props.listNotifications.length === 0 ? (
                 <NotificationItem
                   id={0}
@@ -120,6 +120,13 @@ const s = StyleSheet.create({
     '@media screen and (max-width: 900px)': {
       display: 'none',
       backgroundColor: 'white'
+    }
+  },
+  ulResponsive: {
+    '@media screen and (max-width: 900px)': {
+      padding: '0',
+      fontSize: '20px',
+      listStyle: 'none'
     }
   }
 });
