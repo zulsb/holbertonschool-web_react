@@ -6,10 +6,8 @@ import PropTypes from "prop-types";
 import { StyleSheet, css } from "aphrodite";
 
 class Notifications extends Component {
-  shouldComponentUpdate(nextProps) {
-    return (
-      nextProps.listNotifications.length > this.props.listNotifications.length
-    );
+  constructor(props) {
+    super(props);
   }
   render() {
     const btn = {
@@ -18,19 +16,27 @@ class Notifications extends Component {
       margintop: "0.5rem",
       border: "none",
       background: "transparent",
-      outline: "none",
+      outline: "none"
     };
 
     const cicon = {
       width: "10px",
-      height: "10px",
+      height: "10px"
     };
 
     const showHeaderNoti = css(this.props.displayDrawer ? s.HeaderOff : s.HeaderOn);
 
+    const {
+      displayDrawer,
+      listNotifications,
+      handleDisplayDrawer,
+      handleHideDrawer,
+      markNotificationAsRead,
+    } = this.props;
+
     return (
       <div className={css(s.notiDiv)}>
-        <div className={css(s.menuItem)} id="menuItem">
+        <div className={css(s.menuItem, this.props.displayDrawer ? s.off : '')} id="menuItem">
           <p className={showHeaderNoti}>Your notifications</p>
         </div>
         {this.props.displayDrawer ? (
@@ -38,7 +44,7 @@ class Notifications extends Component {
             <button
               style={btn}
               aria-label="Close"
-              onClick={() => console.log("Close button has been clicked")}
+              onClick={ handleHideDrawer }
             >
               <img src={closeicon} style={cicon} />
             </button>
@@ -80,11 +86,41 @@ class Notifications extends Component {
 Notifications.propTypes = {
   displayDrawer: PropTypes.bool,
   listNotifications: PropTypes.arrayOf(NotificationItemShape),
+  handleDisplayDrawer: PropTypes.func,
+  handleHideDrawer: PropTypes.func,
+  markNotificationAsRead: PropTypes.func
 };
 
 Notifications.defaultProps = {
   displayDrawer: false,
   listNotifications: [],
+  handleDisplayDrawer: () => {},
+  handleHideDrawer: () => {},
+  markNotificationAsRead: () => {}
+};
+
+const opacity = {
+  from: {
+    opacity: 0.5,
+  },
+  to: {
+    opacity: 1,
+  }
+};
+
+const translate = {
+  '0%': {
+    transform: 'translateY(0)',
+  },
+  '50%': {
+    transform: 'translateY(-5px)',
+  },
+  '75%': {
+    transform: 'translateY(5px)',
+  },
+  '100%': {
+    transform: 'translateY(0)',
+  }
 };
 
 const s = StyleSheet.create({
@@ -102,6 +138,14 @@ const s = StyleSheet.create({
   },
   menuItem: {
     marginBottom: "10px",
+    textAlign: 'center',
+    backgroundColor: '#fff8f8',
+    ':hover': {
+      animationName: [opacity, translate],
+      animationDuration: '1s, 0.5s',
+      animationIterationCount: 3,
+      cursor: 'pointer'
+    }
   },
   notiDiv: {
     display: "flex",
@@ -128,7 +172,10 @@ const s = StyleSheet.create({
       fontSize: '20px',
       listStyle: 'none'
     }
-  }
+  },
+  off: {
+    display: 'none'
+  },
 });
 
 export default Notifications;
