@@ -1,10 +1,11 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import { expect as e } from 'chai';
 import App from './App';
 import CourseList from '../CourseList/CourseList';
 import Login from '../Login/Login';
 import { StyleSheetTestUtils } from "aphrodite";
+import AppContext, { user, logOut } from "../App/AppContext";
 
 describe('App test', () => {
   beforeAll(() => {
@@ -32,7 +33,8 @@ describe('App test', () => {
   });
 
   test('CourseList show and Login hide when isLoggedIn = true', () => {
-    const compo = shallow(<App isLoggedIn={true} />);
+    const compo = shallow(<App />);
+    compo.setState({ user: { isLoggedIn: true } });
     e(compo.find(CourseList)).to.have.lengthOf(1);
     e(compo.find(Login)).to.have.lengthOf(0);
   });
@@ -63,5 +65,33 @@ describe('App test', () => {
     e(compo.state().displayDrawer).to.equal(true);
     compo.instance().handleHideDrawer();
     e(compo.state().displayDrawer).to.equal(false);    
+  });
+
+  const value = { user: user, logOut: logOut };
+
+  test('Verifying if the state is updated', () => {
+    const compo = mount(<AppContext.Provider value={value}><App /></AppContext.Provider>);
+    compo.instance().logOut;
+    e(compo.state().user).to.equals(value.user);
+  });
+
+  test('LogIn function updates the state correctly', () => {
+    const compo = mount(<AppContext.Provider value={value}><App /></AppContext.Provider>);
+    compo.instance().logIn('test@test.com', 'test');
+    value.user.isLoggedIn = true;
+    value.user.email = 'test@test.com';
+    value.user.password = 'test';
+    e(compo.state().user.email).to.equals(value.user.email);
+    e(compo.state().user.password).to.equals(value.user.password);
+    e(compo.state().user.isLoggedIn).to.equals(value.user.isLoggedIn);
+  });
+
+  test('LogOut function updates the state correctly', () => {
+    value.user.isLoggedIn = true;
+    value.user.email = 'test@test.com';
+    value.user.password = 'test';
+    const compo = mount(<AppContext.Provider value={value}><App /></AppContext.Provider>);
+    compo.instance().logOut();
+    e(compo.state().user).to.equals(user);
   });
 });

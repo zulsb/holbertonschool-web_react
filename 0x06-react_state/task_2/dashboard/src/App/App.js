@@ -9,6 +9,7 @@ import PropTypes from "prop-types";
 import BodySection from "../BodySection/BodySection";
 import BodySectionWithMarginBottom from "../BodySection/BodySectionWithMarginBottom";
 import { StyleSheet, css } from "aphrodite";
+import AppContext, { user, logOut } from './AppContext';
 
 class App extends React.Component {
   constructor(props) {
@@ -16,7 +17,13 @@ class App extends React.Component {
     this.taps = this.taps.bind(this);
     this.handleDisplayDrawer = this.handleDisplayDrawer.bind(this);
     this.handleHideDrawer = this.handleHideDrawer.bind(this);
-    this.state = { displayDrawer: false };
+    this.logOut = this.logOut.bind(this);
+    this.logIn = this.logIn.bind(this);
+    this.state = {
+      displayDrawer: false,
+      user: user,
+      logOut: this.logOut
+    };
   }
 
   componentDidMount() {
@@ -30,7 +37,7 @@ class App extends React.Component {
   taps(event) {
     if (event.key === "h" && event.ctrlKey) {
       alert("Logging you out");
-      this.props.logOut();
+      this.state.logOut();
     }
   }
 
@@ -40,6 +47,14 @@ class App extends React.Component {
 
   handleHideDrawer() {
     this.setState({ displayDrawer: false });
+  }
+
+  logIn(email, password) {
+    this.setState({ user: { email: email, password: password, isLoggedIn: true } })
+  }
+
+  logOut() {
+    this.setState({ user: user });
   }
 
   render() {
@@ -58,20 +73,20 @@ class App extends React.Component {
     const { displayDrawer } = this.state;
 
     return (
-      <React.Fragment>
-        <Notifications listNotifications={listNotifications} displayDrawer={displayDrawer}
+      <AppContext.Provider value={{ user: this.state.user, logOut: this.state.logOut }}>
+        <Notifications listNotifications={listNotifications} displayDrawer={this.state.displayDrawer}
           handleDisplayDrawer={this.handleDisplayDrawer} handleHideDrawer={this.handleHideDrawer} />
         <div className="App">
           <Header />
           <div className={css(s.body)}>
-            {this.props.isLoggedIn ? 
+            {this.state.user.isLoggedIn ? 
               (
                 <BodySectionWithMarginBottom title='Course list'>
                   <CourseList listCourses={listCourses} />
                 </BodySectionWithMarginBottom>
               ) : (
                 <BodySectionWithMarginBottom title='Log in to continue'>
-                  <Login />
+                  <Login logIn={this.logIn} />
                 </BodySectionWithMarginBottom>
               )}
             <BodySection title="News from the School" />
@@ -86,20 +101,14 @@ class App extends React.Component {
             <Footer />
           </div>
         </div>
-      </React.Fragment>
+      </AppContext.Provider>
     );
   }
 }
 
-App.propTypes = {
-  isLoggedIn: PropTypes.bool,
-  logOut: PropTypes.func,
-};
+App.propTypes = {};
 
-App.defaultProps = {
-  isLoggedIn: false,
-  logOut: () => {},
-};
+App.defaultProps = {};
 
 const s = StyleSheet.create({
   body: {
