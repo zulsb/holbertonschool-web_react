@@ -44,4 +44,8 @@ describe('App test', () => {
     calls.keydown({ key: 'h', ctrlKey: true });
     expect(alertMessage).toHaveBeenCalled();
   });
+
+  test('displayDrawer = false', () => {
+    expect(shallow(<App />).state().displayDrawer).toEqual(false);
+  });
 });
