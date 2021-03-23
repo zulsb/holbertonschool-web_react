@@ -23,6 +23,10 @@ class App extends React.Component {
     document.addEventListener("keydown", this.taps);
   }
 
+  componentWillUnmount() {
+    window.removeEventListener('keydown', this.taps);
+  }
+
   taps(event) {
     if (event.key === "h" && event.ctrlKey) {
       alert("Logging you out");
@@ -36,10 +40,6 @@ class App extends React.Component {
 
   handleHideDrawer() {
     this.setState({ displayDrawer: false });
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('keydown', this.taps);
   }
 
   render() {
@@ -65,14 +65,15 @@ class App extends React.Component {
           <Header />
           <div className={css(s.body)}>
             {this.props.isLoggedIn ? 
-              <BodySectionWithMarginBottom title="Course list">
-                <CourseList listCourses={listCourses} />
-              </BodySectionWithMarginBottom>
-             : 
-              <BodySectionWithMarginBottom title="Log in to continue">
-                <Login />
-              </BodySectionWithMarginBottom>
-            }
+              (
+                <BodySectionWithMarginBottom title='Course list'>
+                  <CourseList listCourses={listCourses} />
+                </BodySectionWithMarginBottom>
+              ) : (
+                <BodySectionWithMarginBottom title='Log in to continue'>
+                  <Login />
+                </BodySectionWithMarginBottom>
+              )}
             <BodySection title="News from the School" />
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do

@@ -12,9 +12,11 @@ class Notifications extends Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    if (this.props.listNotifications.length < nextProps.listNotifications.length) return true;
-    if (this.props.displayDrawer !== nextProps.displayDrawer) return true;
-    return false;
+    return (
+      nextProps.listNotifications.length >
+      this.props.listNotifications.length ||
+      nextProps.displayDrawer !== this.props.displayDrawer
+    );
   }
 
   render() {
@@ -38,16 +40,15 @@ class Notifications extends Component {
       displayDrawer,
       listNotifications,
       handleDisplayDrawer,
-      handleHideDrawer,
-      markNotificationAsRead,
+      handleHideDrawer,      
     } = this.props;
 
     return (
       <div className={css(s.notiDiv)}>
-        <div className={css(s.menuItem, this.props.displayDrawer ? s.off : '')} id="menuItem" onClick={this.props.handleDisplayDrawer}>
+        <div className={css(s.menuItem, this.props.displayDrawer ? s.off : '')} id="menuItem" onClick={handleDisplayDrawer}>
           <p className={showHeaderNoti}>Your notifications</p>
         </div>
-        {this.props.displayDrawer ? (
+        {displayDrawer ? (
           <div className={css(s.Notifications)} id="Notifications">
             <button
               id="cMenuItem"
@@ -59,7 +60,7 @@ class Notifications extends Component {
             </button>
             <p>Here is the list of notifications</p>
             <ul className={css(s.ulResponsive)}>
-              {this.props.listNotifications.length === 0 ? (
+              {listNotifications.length === 0 ? (
                 <NotificationItem
                   id={0}
                   value="No new notification for now"
@@ -69,7 +70,7 @@ class Notifications extends Component {
               ) : (
                 <></>
               )}
-              {this.props.listNotifications.map((list) => (
+              {listNotifications.map((list) => (
                 <NotificationItem
                   id={list.id}
                   key={list.id}
