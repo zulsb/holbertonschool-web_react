@@ -14,6 +14,9 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.taps = this.taps.bind(this);
+    this.handleDisplayDrawer = this.handleDisplayDrawer.bind(this);
+    this.handleHideDrawer = this.handleHideDrawer.bind(this);
+    this.state = { displayDrawer: false };
   }
 
   componentDidMount() {
@@ -26,6 +29,19 @@ class App extends React.Component {
       this.props.logOut();
     }
   }
+
+  handleDisplayDrawer() {
+    this.setState({ displayDrawer: true });
+  }
+
+  handleHideDrawer() {
+    this.setState({ displayDrawer: false });
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('keydown', this.taps);
+  }
+
   render() {
     const listCourses = [
       { id: 1, name: "ES6", credit: 60 },
@@ -39,9 +55,12 @@ class App extends React.Component {
       { id: 3, type: "urgent", html: { __html: getLatestNotification() } },
     ];
 
+    const { displayDrawer } = this.state;
+
     return (
       <React.Fragment>
-        <Notifications listNotifications={listNotifications} />
+        <Notifications listNotifications={listNotifications} displayDrawer={displayDrawer}
+          handleDisplayDrawer={this.handleDisplayDrawer} handleHideDrawer={this.handleHideDrawer} />
         <div className="App">
           <Header />
           <div className={css(s.body)}>

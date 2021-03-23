@@ -8,7 +8,15 @@ import { StyleSheet, css } from "aphrodite";
 class Notifications extends Component {
   constructor(props) {
     super(props);
+    this.markAsRead = this.markAsRead.bind(this);
   }
+
+  shouldComponentUpdate(nextProps) {
+    if (this.props.listNotifications.length < nextProps.listNotifications.length) return true;
+    if (this.props.displayDrawer !== nextProps.displayDrawer) return true;
+    return false;
+  }
+
   render() {
     const btn = {
       position: "absolute",
@@ -36,12 +44,13 @@ class Notifications extends Component {
 
     return (
       <div className={css(s.notiDiv)}>
-        <div className={css(s.menuItem, this.props.displayDrawer ? s.off : '')} id="menuItem">
+        <div className={css(s.menuItem, this.props.displayDrawer ? s.off : '')} id="menuItem" onClick={this.props.handleDisplayDrawer}>
           <p className={showHeaderNoti}>Your notifications</p>
         </div>
         {this.props.displayDrawer ? (
           <div className={css(s.Notifications)} id="Notifications">
             <button
+              id="cMenuItem"
               style={btn}
               aria-label="Close"
               onClick={ handleHideDrawer }

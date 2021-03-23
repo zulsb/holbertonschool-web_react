@@ -97,4 +97,22 @@ describe('Notification test', () => {
     expect(shouldComponentUpdate).toHaveLastReturnedWith(true);
   });
 
+  test('Clicking on the menu item calls handleDisplayDrawer', () => {
+    const hDD = jest.fn();
+    const hHD = jest.fn();
+    const compo = shallow(<Notifications handleDisplayDrawer={hDD} handleHideDrawer={hHD} />);
+    compo.find("#menuItem").simulate("click");
+    expect(hDD).toHaveBeenCalled();
+    expect(hHD).not.toHaveBeenCalled();
+  });
+
+  test('Clicking on the button calls handleHideDrawer', () => {
+    const hDD = jest.fn();
+    const hHD = jest.fn();
+    const compo = shallow(<Notifications displayDrawer handleDisplayDrawer={hDD} handleHideDrawer={hHD} />);
+    compo.find("#cMenuItem").simulate("click");
+    expect(hHD).toHaveBeenCalled();
+    expect(hDD).not.toHaveBeenCalled();
+  });
+
 });
