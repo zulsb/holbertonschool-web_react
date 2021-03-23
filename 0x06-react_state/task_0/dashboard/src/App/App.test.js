@@ -48,4 +48,20 @@ describe('App test', () => {
   test('displayDrawer = false', () => {
     expect(shallow(<App />).state().displayDrawer).toEqual(false);
   });
+
+  test('Calling handleDisplayDrawer, state should now be true', () => {
+    const compo = shallow(<App />);
+    e(compo.state().displayDrawer).to.equal(false);
+    compo.instance().handleDisplayDrawer();
+    e(compo.state().displayDrawer).to.equal(true);    
+  });
+
+  test('Calling handleHideDrawer, state is updated to be false', () => {
+    const compo = shallow(<App />);
+    e(compo.state().displayDrawer).to.equal(false);
+    compo.instance().handleDisplayDrawer();
+    e(compo.state().displayDrawer).to.equal(true);
+    compo.instance().handleHideDrawer();
+    e(compo.state().displayDrawer).to.equal(false);    
+  });
 });

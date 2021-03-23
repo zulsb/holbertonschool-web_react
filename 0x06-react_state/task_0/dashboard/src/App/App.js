@@ -64,15 +64,15 @@ class App extends React.Component {
         <div className="App">
           <Header />
           <div className={css(s.body)}>
-            {this.props.isLoggedIn ? (
+            {this.props.isLoggedIn ? 
               <BodySectionWithMarginBottom title="Course list">
                 <CourseList listCourses={listCourses} />
               </BodySectionWithMarginBottom>
-            ) : (
+             : 
               <BodySectionWithMarginBottom title="Log in to continue">
                 <Login />
               </BodySectionWithMarginBottom>
-            )}
+            }
             <BodySection title="News from the School" />
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
