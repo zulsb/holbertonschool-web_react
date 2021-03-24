@@ -33,7 +33,7 @@ function CourseListRow({ isHeader, textFirstCell, textSecondCell }) {
     titles = (
       <React.Fragment>
         <td>
-          <input type="checkbox" onClick={handleTaps}></input>{textFirstCell}
+          <input className={css(s.rowChecked)} type="checkbox" onClick={handleTaps}></input>{textFirstCell}
         </td>
         <td>{textSecondCell}</td>
       </React.Fragment>
