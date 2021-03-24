@@ -3,6 +3,10 @@ import { StyleSheet, css } from 'aphrodite';
 import PropTypes from 'prop-types';
 
 function CourseListRow({ isHeader, textFirstCell, textSecondCell }) {
+  const [checkBox, setCheckbox] = React.useState(false);
+  const handleTaps = () => {
+    setCheckbox(!checkbox);
+  };
   let titles = undefined;
   let bgColor = undefined;
   const bgColorRow = { backgroundColor: '#f5f5f5ab' };
@@ -24,11 +28,13 @@ function CourseListRow({ isHeader, textFirstCell, textSecondCell }) {
         </React.Fragment>
       );
     }
-  } else {
+  } if (isHeader === false) {
     bgColor = bgColorRow;
     titles = (
       <React.Fragment>
-        <td>{textFirstCell}</td>
+        <td>
+          <input type="checkbox" onClick={handleTaps}></input>{textFirstCell}
+        </td>
         <td>{textSecondCell}</td>
       </React.Fragment>
     );
@@ -58,6 +64,9 @@ const s = StyleSheet.create({
     textAlign: 'left',
     padding: '3px'
   },
+  rowChecked: {
+    backgroundColor: '#e6e4e4'
+  }
 });
 
 export default CourseListRow;
