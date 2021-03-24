@@ -1,14 +1,25 @@
 import React from "react";
 import { getFullYear, getFooterCopy } from "../utils/utils";
+import AppContext from "../App/AppContext";
 
-function Footer() {
-  return (
-    <div>
-      <p>
-        Copyright {getFullYear()} - {getFooterCopy(true)}
-      </p>
-    </div>
-  );
+class Footer extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <footer>
+        <p>
+          Copyright {getFullYear()} - {getFooterCopy(true)}
+        </p>
+        {this.context.user.isLoggedIn ?
+          <p><a>Contact us</a></p> :
+          <></>}
+      </footer>
+    );
+  }
 }
 
+Footer.contextType = AppContext;
 export default Footer;

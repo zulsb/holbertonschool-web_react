@@ -5,6 +5,7 @@ import App from './App';
 import CourseList from '../CourseList/CourseList';
 import Login from '../Login/Login';
 import { StyleSheetTestUtils } from "aphrodite";
+import { getLatestNotification } from "../utils/utils";
 import AppContext, { user, logOut } from "../App/AppContext";
 
 describe('App test', () => {
@@ -93,5 +94,19 @@ describe('App test', () => {
     const compo = mount(<AppContext.Provider value={value}><App /></AppContext.Provider>);
     compo.instance().logOut();
     e(compo.state().user).to.equals(user);
+  });
+
+  const listNotifications = [
+    { id: 1, type: 'default', value: 'New course available' },
+    { id: 2, type: 'urgent', value: 'New resume available' },
+    { id: 3, type: 'urgent', html: { __html: getLatestNotification() } }
+  ];
+
+  test('markNotificationAsRead works', () => {
+    const compo = mount(<AppContext.Provider value={value}><App /></AppContext.Provider>);
+    compo.setState({ listNotifications: listNotifications });
+    e(compo.state().listNotifications.length).to.equals(3);
+    compo.instance().markNotificationAsRead(1);
+    e(compo.state().listNotifications.length).to.equals(2);
   });
 });

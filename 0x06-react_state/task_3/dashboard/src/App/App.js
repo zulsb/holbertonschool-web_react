@@ -11,6 +11,12 @@ import BodySectionWithMarginBottom from "../BodySection/BodySectionWithMarginBot
 import { StyleSheet, css } from "aphrodite";
 import AppContext, { user, logOut } from './AppContext';
 
+const listNotifications = [
+  { id: 1, type: "default", value: "New course available" },
+  { id: 2, type: "urgent", value: "New resume available" },
+  { id: 3, type: "urgent", html: { __html: getLatestNotification() } },
+];
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -19,10 +25,12 @@ class App extends React.Component {
     this.handleHideDrawer = this.handleHideDrawer.bind(this);
     this.logOut = this.logOut.bind(this);
     this.logIn = this.logIn.bind(this);
-    this.state = {
+    this.markNotificationAsRead = this.markNotificationAsRead.bind(this);
+    this.state = { 
       displayDrawer: false,
       user: user,
-      logOut: this.logOut
+      logOut: this.logOut,
+      listNotifications: listNotifications
     };
   }
 
@@ -57,25 +65,23 @@ class App extends React.Component {
     this.setState({ user: user });
   }
 
+  markNotificationAsRead(id) {
+    const newListNotification = this.state.listNotifications.filter(notification => { return notification.id !== id; });
+    this.setState({ listNotifications: this.state.listNotifications.filter(notification => { return notification.id !== id }) });
+  }; 
+
   render() {
     const listCourses = [
       { id: 1, name: "ES6", credit: 60 },
       { id: 2, name: "Webpack", credit: 20 },
       { id: 3, name: "React", credit: 40 },
     ];
-
-    const listNotifications = [
-      { id: 1, type: "default", value: "New course available" },
-      { id: 2, type: "urgent", value: "New resume available" },
-      { id: 3, type: "urgent", html: { __html: getLatestNotification() } },
-    ];
-
-    const { displayDrawer } = this.state;
-
+    
     return (
       <AppContext.Provider value={{ user: this.state.user, logOut: this.state.logOut }}>
-        <Notifications listNotifications={listNotifications} displayDrawer={this.state.displayDrawer}
-          handleDisplayDrawer={this.handleDisplayDrawer} handleHideDrawer={this.handleHideDrawer} />
+        <Notifications listNotifications={this.state.listNotifications} displayDrawer={this.state.displayDrawer}
+          handleDisplayDrawer={this.handleDisplayDrawer} handleHideDrawer={this.handleHideDrawer}
+          markNotificationAsRead={this.markNotificationAsRead}></Notifications>
         <div className="App">
           <Header />
           <div className={css(s.body)}>

@@ -8,16 +8,7 @@ import { StyleSheet, css } from "aphrodite";
 class Notifications extends Component {
   constructor(props) {
     super(props);
-    this.markAsRead = this.markAsRead.bind(this);
-  }
-
-  shouldComponentUpdate(nextProps) {
-    return (
-      nextProps.listNotifications.length >
-      this.props.listNotifications.length ||
-      nextProps.displayDrawer !== this.props.displayDrawer
-    );
-  }
+  } 
 
   render() {
     const btn = {
@@ -40,12 +31,13 @@ class Notifications extends Component {
       displayDrawer,
       listNotifications,
       handleDisplayDrawer,
-      handleHideDrawer,      
+      handleHideDrawer, 
+      markNotificationAsRead,     
     } = this.props;
 
     return (
       <div className={css(s.notiDiv)}>
-        <div className={css(s.menuItem, this.props.displayDrawer ? s.off : '')} id="menuItem" onClick={handleDisplayDrawer}>
+        <div className={css(s.menuItem, displayDrawer ? s.off : '')} id="menuItem" onClick={handleDisplayDrawer}>
           <p className={showHeaderNoti}>Your notifications</p>
         </div>
         {displayDrawer ? (
@@ -67,9 +59,9 @@ class Notifications extends Component {
                   type="no-new"
                   markAsRead={this.markAsRead}
                 />
-              ) : (
+              ) : 
                 <></>
-              )}
+              }
               {listNotifications.map((list) => (
                 <NotificationItem
                   id={list.id}
@@ -77,20 +69,17 @@ class Notifications extends Component {
                   type={list.type}
                   value={list.value}
                   html={list.html}
-                  markAsRead={this.markAsRead}
+                  markAsRead={markNotificationAsRead}
                 />
               ))}
             </ul>
           </div>
-        ) : (
+        ) : 
           <></>
-        )}
+        }
       </div>
     );
-  }
-  markAsRead(id) {
-    console.log(`Notification ${id} has been marked as read`);
-  }
+  }  
 }
 
 Notifications.propTypes = {

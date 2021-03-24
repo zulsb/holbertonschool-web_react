@@ -62,12 +62,12 @@ describe('Notification test', () => {
     e(compo.find(NotificationItem)).to.have.lengthOf(3);
   });
 
-  test('Check function "markAsRead"', () => {
-    const compo = shallow(<Notifications displayDrawer={true} />);
-    console.log = jest.fn();
-    compo.instance().markAsRead(1);
-    expect(console.log).toHaveBeenCalled()
-  });
+  // test('Check function "markAsRead"', () => {
+  //   const compo = shallow(<Notifications displayDrawer={true} />);
+  //   console.log = jest.fn();
+  //   compo.instance().markAsRead(1);
+  //   expect(console.log).toHaveBeenCalled()
+  // });
 
   const NOupdated = [
     { id: 1, type: 'default', value: 'New course available' },
@@ -81,21 +81,21 @@ describe('Notification test', () => {
     { id: 4, type: 'default', value: 'New updates' },
   ];
 
-  test('Updating props same list', () => {
+  /* test('Updating props same list', () => {
     const compo = shallow(<Notifications displayDrawer={true} listNotifications={listNotifications} />);
     const shouldComponentUpdate = jest.spyOn(Notifications.prototype, 'shouldComponentUpdate');
     compo.setProps({ listNotifications: NOupdated });
     expect(shouldComponentUpdate).toHaveBeenCalled();
     expect(shouldComponentUpdate).toHaveLastReturnedWith(false);
-  });
+  }); */
 
-  test('Updating propswith a longer list', () => {
+  /* test('Updating propswith a longer list', () => {
     const compo = shallow(<Notifications displayDrawer={true} listNotifications={listNotifications} />);
     const shouldComponentUpdate = jest.spyOn(Notifications.prototype, 'shouldComponentUpdate');
     compo.setProps({ listNotifications: updated });
     expect(shouldComponentUpdate).toHaveBeenCalled();
     expect(shouldComponentUpdate).toHaveLastReturnedWith(true);
-  });
+  }); */
 
   test('Clicking on the menu item calls handleDisplayDrawer', () => {
     const hDD = jest.fn();
