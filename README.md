@@ -25,4 +25,4 @@ Projects carried out in the specialization Web Stack programming - React.
 - Github: [zulsb](https://github.com/zulsb)
 - Twitter: [@LuzSanchezB](https://twitter.com/LuzSanchezB)
 
-Cohort 10 | Cali, Colombia 2020
+Cohort 10 | Cali, Colombia 2021
